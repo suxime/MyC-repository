@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+    <AnalysisLevel>none</AnalysisLevel>
+    <Configurations>Debug;Release;DebugOqtane;DebugDnn</Configurations>
+    <AutoGenerateBindingRedirects>False</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\System\Sxc\**" />
+    <Content Remove="wwwroot\System\Sxc\**" />
+    <EmbeddedResource Remove="wwwroot\System\Sxc\**" />
+    <None Remove="wwwroot\System\Sxc\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="RazorPartialToString\IRazorPartialToStringRenderer.cs" />
+    <Content Include="RazorPartialToString\RazorPartialToStringRenderer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Edi.RouteDebugger" Version="1.3.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.5" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\eav-server\ToSic.Eav.Apps\ToSic.Eav.Apps.csproj" />
+    <ProjectReference Include="..\..\..\..\eav-server\ToSic.Eav.Core\ToSic.Eav.Core.csproj" />
+    <ProjectReference Include="..\..\..\..\eav-server\ToSic.Eav.DataSources\ToSic.Eav.DataSources.csproj" />
+    <ProjectReference Include="..\..\..\..\eav-server\ToSic.Eav.ImportExport\ToSic.Eav.ImportExport.csproj" />
+    <ProjectReference Include="..\..\..\..\eav-server\ToSic.Eav\ToSic.Eav.csproj" />
+    <ProjectReference Include="..\..\..\..\eav-server\ToSic.Lib.Core\ToSic.Lib.Core.csproj" />
+    <ProjectReference Include="..\..\Razor\ToSic.Sxc.Razor\ToSic.Sxc.Razor.csproj" />
+    <ProjectReference Include="..\ToSic.Sxc.Mvc\ToSic.Sxc.Mvc.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Engine\" />
+    <Folder Include="wwwroot\adam\" />
+    <Folder Include="wwwroot\System\" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="@set BuildTarget=$(ProjectDir)wwwroot\System\Sxc&#xD;&#xA;&#xD;&#xA;@REM Copy the data folders&#xD;&#xA;robocopy /mir $(ProjectDir)..\..\Data\.data\ %25BuildTarget%25\.data\&#xD;&#xA;robocopy /mir $(ProjectDir)..\..\Data\.databeta\ %25BuildTarget%25\.databeta\&#xD;&#xA;robocopy /mir $(ProjectDir)..\..\Data\.data-custom\ %25BuildTarget%25\.data-custom\&#xD;&#xA;&#xD;&#xA;@REM Copy 2sxc JS stuff&#xD;&#xA;robocopy /mir $(Source)\js\ %25BuildTarget%25\js\&#xD;&#xA;robocopy /mir $(Source)\dist\ %25BuildTarget%25\dist\&#xD;&#xA;robocopy /mir $(Source)\system\ %25BuildTarget%25\system\&#xD;&#xA;&#xD;&#xA;@echo Copied all files to this Website target: '%25BuildTarget%25'" />
+  </Target>
+
+</Project>

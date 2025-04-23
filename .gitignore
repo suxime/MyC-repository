@@ -1,0 +1,27 @@
+# Keep ToSic_SexyContent folder
+!ToSIC_SexyContent
+
+# other stuff in the DesktopModules Folder
+/2sxc-docs/*
+/InstallPackages/*
+Src/Mvc/Website/wwwroot/adam/Blog App/*
+bin/
+Src/Integration/SxcEdit01/wwwroot/adam/*
+
+# 2sxc assets
+/Src/Oqtane/ToSic.Sxc.Oqt.Server/2sxc
+/Src/Oqtane/ToSic.Sxc.Oqt.Server/Content
+/Src/Oqtane/ToSic.Sxc.Oqt.Server/wwwroot/Modules/ToSic.Sxc/assets
+/Src/Oqtane/ToSic.Sxc.Oqt.Server/wwwroot/Modules/ToSic.Sxc/dist
+/Src/Oqtane/ToSic.Sxc.Oqt.Server/wwwroot/Modules/ToSic.Sxc/js
+/Src/Oqtane/ToSic.Sxc.Oqt.Server/wwwroot/Modules/ToSic.Sxc/system
+/Src/Oqtane/ToSic.Sxc.Oqt.Server/wwwroot/Modules/ToSic.Sxc.Oqtane/assets
+/Src/Oqtane/ToSic.Sxc.Oqt.Server/wwwroot/Modules/ToSic.Sxc.Oqtane/dist
+/Src/Oqtane/ToSic.Sxc.Oqt.Server/wwwroot/Modules/ToSic.Sxc.Oqtane/js
+/Src/Oqtane/ToSic.Sxc.Oqt.Server/wwwroot/Modules/ToSic.Sxc.Oqtane/system
+*.lutconfig
+
+# Exclude 2sxc-build.config.json
+**/2sxc-build.config.json
+.vs/
+/Src/2sxc Multi-Target Oqt510.sln
